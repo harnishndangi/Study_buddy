@@ -1,0 +1,9 @@
+// Axios instance setup
+import axios from 'axios';
+
+const axiosInstance = axios.create({
+  baseURL: import.meta.env.REACT_APP_API_BASE_URL || 'http://localhost:5173/api',
+  timeout: 10000,
+});
+
+export default axiosInstance;
