@@ -4,15 +4,15 @@ const router = express.Router();
 
 
 // Start a new Pomodoro session
-router.post('/start', startSession);
+router.post('/start/:userId', startSession);
 
 // Log a completed Pomodoro session
-router.post('/log',logSession);
+router.post('/log/:userId', logSession);
 
 // Get all Pomodoro sessions
 router.get('/', getSessions);
 
 // Get Pomodoro session stats
-router.get('/stats', getStats);
+router.get('/stats/:userId', getStats);
 
 export default router;
