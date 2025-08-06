@@ -2,12 +2,11 @@ import express from "express";
 import "dotenv/config";
 import cors from "cors";
 import { connectDB } from "./library/db.js";
+import authRoutes from './routes/auth.js';
 import noteRoutes from "./routes/notes.js";
 import taskRoutes from "./routes/tasks.js";
 import pomodoroRoutes from './routes/pomodoros.js';
-import authRoutes from './routes/auth.js';
 
- 
 
 const app = express();
 const port = process.env.PORT;

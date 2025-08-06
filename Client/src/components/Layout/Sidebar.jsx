@@ -36,9 +36,6 @@ function Sidebar() {
                     <Link className="hover:text-indigo-600" to="/clips">
                         Clips
                     </Link>
-                    <Link className="hover:text-indigo-600" to="/tasks">
-                        Tasks
-                    </Link>
                 </nav>
 
                 {/* Bottom Actions */}
@@ -54,6 +51,18 @@ function Sidebar() {
                     <Link to="/help">
                         <button className="size-7 flex items-center justify-center hover:bg-gray-100 transition border border-slate-300 rounded-md">
                             <HelpCircle className='w-4 h-4' />
+                        </button>
+                    </Link>
+                </div>
+                <div >
+                    <Link to={"/signup"}>
+                        <button className="mt-4 w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition">
+                            Sign Up
+                        </button>
+                    </Link>
+                    <Link to={"/login"}>
+                        <button className="mt-2 w-full bg-gray-200 text-gray-900 py-2 rounded-md hover:bg-gray-300 transition">
+                            Login
                         </button>
                     </Link>
                 </div>
