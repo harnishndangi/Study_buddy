@@ -1,73 +1,102 @@
-import { HelpCircle, SettingsIcon, SunIcon } from 'lucide-react';
 import React from 'react';
-import { Link } from 'react-router-dom';
-import logo from "../../assets/icons/logo.png"; 
+import { Link, useLocation } from 'react-router-dom';
+import logo  from "../../assets/icons/logo.png";
+import logo1 from "../../assets/icons/logo1.png";
+import { HelpCircle, SettingsIcon, SunIcon, BookOpen, Calendar, BarChart2, ClipboardList, Layers, FileText } from 'lucide-react';
+
+const navItems = [
+    { label: "Notes", to: "/notes", icon: <FileText size={18} /> },
+    { label: "Tasks", to: "/tasks", icon: <ClipboardList size={18} /> },
+    { label: "Calendar", to: "/calendar", icon: <Calendar size={18} /> },
+    { label: "Flashcards", to: "/flashcards", icon: <BookOpen size={18} /> },
+    { label: "Analytics", to: "/analytics", icon: <BarChart2 size={18} /> },
+    { label: "Clips", to: "/clips", icon: <Layers size={18} /> },
+];
+
 
 function Sidebar() {
+    const location = useLocation();
+
     return (
-        <>
-            <aside className="flex flex-col justify-between px-6 py-6 shadow w-40 bg-white h-full">
-                {/* Logo */}
-                <Link to="https://prebuiltui.com" className="mb-8 flex justify-center">
+        <aside className="relative flex flex-col h-screen w-20 md:w-40 bg-white shadow-2xl md:shadow-xl border-r-2 border-indigo-100 md:border-slate-100 md:bg-white/80 md:backdrop-blur-lg rounded-none md:rounded-xl p-4 md:p-6 transition-all duration-300">
+            {/* Logo */}
+            <div className=" flex items-center justify-center mb-5">
+                <Link to="/" className="flex justify-center">
+                    <img
+                        src={logo1}
+                        alt="Logo1"
+                        className="w-12 h-12 object-contain md:hidden"
+                    />
                     <img
                         src={logo}
                         alt="Logo"
-                        className="w-30 h-15 object-cover "
+                        className="w-12 h-12 md:w-30 md:h-15 object-contain hidden md:block"
                     />
                 </Link>
+            </div>
+            <nav className="flex-1 flex flex-col gap-2 ">
+                {navItems.map((item) => (
+                    <Link
+                        key={item.to}
+                        to={item.to}
+                        className={`flex items-center gap-3 px-3 py-2 rounded-lg font-medium transition-all duration-200
+                          ${location.pathname === item.to
+                                ? "bg-indigo-600 text-white shadow"
+                                : "text-gray-700 hover:bg-indigo-50 hover:text-indigo-600"}
+                        `}
+                    >
+                        {item.icon}
+                        <span className="hidden md:inline">{item.label}</span>
+                    </Link>
+                ))}
+            </nav>
 
-                {/* Navigation */}
-                <nav className="flex flex-col gap-6 justify-between items-center text-gray-900 text-sm font-normal">
-                    <Link className="hover:text-indigo-600" to="/notes">
-                        Notes
-                    </Link>
-                    <Link className="hover:text-indigo-600" to="/tasks">
-                        Tasks
-                    </Link>
-                    <Link className="hover:text-indigo-600" to="/calendar">
-                        Calendar
-                    </Link>
-                    <Link className="hover:text-indigo-600" to="/flashcards">
-                        Flashcards
-                    </Link>
-                    <Link className="hover:text-indigo-600" to="/analytics">
-                        Analytics
-                    </Link>
-                    <Link className="hover:text-indigo-600" to="/clips">
-                        Clips
-                    </Link>
-                </nav>
-
-                {/* Bottom Actions */}
-                <div className="flex  gap-3 mt-auto">
-                    <button className="size-7 flex items-center justify-center hover:bg-gray-100 transition border border-slate-300 rounded-md">
-                       <SunIcon className='w-4 h-4' />
+            {/* Bottom Actions */}
+            <div className="mt-auto flex flex-col gap-4">
+                <div className="flex flex-col gap-4 justify-center items-center md:flex-row md:justify-start md:gap-[4px]">
+                    <button
+                        className="group p-2 rounded-xl bg-white/70 border border-slate-200 shadow-sm hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition relative"
+                        aria-label="Toggle theme"
+                        tabIndex={0}
+                    >
+                        <SunIcon size={18} className="text-slate-500 group-hover:text-indigo-600 group-hover:scale-110 transition-transform" />
+                        <span className="absolute left-1/2 -translate-x-1/2 top-full mt-2 px-2 py-1 text-xs bg-gray-900 text-white rounded opacity-0 group-hover:opacity-100  transition-opacity whitespace-nowrap z-10">Theme</span>
                     </button>
-                    <Link to="/settings">
-                        <button className="size-7 flex items-center justify-center hover:bg-gray-100 transition border border-slate-300 rounded-md">
-                            <SettingsIcon className='w-4 h-4' />
+                    <Link to="/settings" tabIndex={-1}>
+                        <button
+                            className="group p-2 rounded-xl bg-white/70 border border-slate-200 shadow-sm hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition relative"
+                            aria-label="Settings"
+                            tabIndex={0}
+                        >
+                            <SettingsIcon size={18} className="text-slate-500 group-hover:text-indigo-600 group-hover:scale-110 transition-transform" />
+                            <span className="absolute left-1/2 -translate-x-1/2 top-full mt-2 px-2 py-1 text-xs bg-gray-900 text-white rounded opacity-0 group-hover:opacity-100  transition-opacity whitespace-nowrap z-10">Settings</span>
                         </button>
                     </Link>
-                    <Link to="/help">
-                        <button className="size-7 flex items-center justify-center hover:bg-gray-100 transition border border-slate-300 rounded-md">
-                            <HelpCircle className='w-4 h-4' />
+                    <Link to="/help" tabIndex={-1}>
+                        <button
+                            className="group p-2 rounded-xl bg-white/70 border border-slate-200 shadow-sm hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition relative"
+                            aria-label="Help"
+                            tabIndex={0}
+                        >
+                            <HelpCircle size={18} className="text-slate-500 group-hover:text-indigo-600 group-hover:scale-110 transition-transform" />
+                            <span className="absolute left-1/2 -translate-x-1/2 top-full mt-2 px-2 py-1 text-xs bg-gray-900 text-white rounded opacity-0 group-hover:opacity-100  transition-opacity whitespace-nowrap z-10">Help</span>
                         </button>
                     </Link>
                 </div>
-                <div >
-                    <Link to={"/signup"}>
-                        <button className="mt-4 w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition">
+                <div className="flex flex-col gap-2 w-full">
+                    <Link to="/signup" className="w-full">
+                        <button className="w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold shadow hover:bg-indigo-700 transition">
                             Sign Up
                         </button>
                     </Link>
-                    <Link to={"/login"}>
-                        <button className="mt-2 w-full bg-gray-200 text-gray-900 py-2 rounded-md hover:bg-gray-300 transition">
+                    <Link to="/login" className="w-full">
+                        <button className="w-full bg-white text-indigo-600 border border-indigo-200 py-2 rounded-lg font-semibold shadow hover:bg-indigo-50 transition">
                             Login
                         </button>
                     </Link>
                 </div>
-            </aside>
-        </>
+            </div>
+        </aside>
     );
 }
 

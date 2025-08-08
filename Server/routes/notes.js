@@ -24,5 +24,5 @@ router.post('/:id/highlight', highlightNote);
 
 // Attach a file to a note (multipart/form-data, file field: 'file')
 router.post('/:id/attach', upload.single('file'), attachFile);
-
+  
 export default router;
