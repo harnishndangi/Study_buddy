@@ -3,7 +3,7 @@ import { getTasks, getTaskById, createTask, updateTask, deleteTask, completeTask
 import upload from '../middleware/upload.js'; // Multer middleware for file uploads
 
 const router = express.Router();
- 
+  
 
 // Get all tasks
 router.get('/', getTasks);
