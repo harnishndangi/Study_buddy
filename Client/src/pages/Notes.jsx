@@ -190,7 +190,7 @@ function Notes() {
   return (
     <div className="flex flex-row h-screen bg-gradient-to-br from-blue-50 to-purple-100 overflow-x-auto">
       <Sidebar />
-      <main className="flex-1 min-w-0 overflow-y-auto px-2 sm:px-4 md:px-10 py-4 sm:py-6">
+      <main className="flex-1 min-w-0 overflow-y-auto ml-20 md:ml-40 px-2 sm:px-4 md:px-10 py-4 sm:py-6">
         <h1 className="text-2xl sm:text-3xl font-extrabold mb-4 sm:mb-6 text-center text-blue-800 drop-shadow-md">
           Notes
         </h1>

@@ -237,7 +237,7 @@ function Pomodoro() {
     <>
       <div className="flex h-screen">
         <Sidebar />
-        <main className="flex-1 p-3 sm:p-6 lg:p-8 bg-gray-50 overflow-y-auto">
+        <main className="flex-1 ml-20 md:ml-40 p-3 sm:p-6 lg:p-8 bg-gray-50 overflow-y-auto">
           <div className="max-w-6xl mx-auto">
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 sm:mb-8 pb-4 border-b border-gray-200">

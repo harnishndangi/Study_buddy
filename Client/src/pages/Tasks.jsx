@@ -236,9 +236,9 @@ function Tasks() {
 
   return (
     <>
-      <div className="flex h-screen">
+      <div className="flex h-screen overflow-hidden">
         <Sidebar />
-        <main className="flex-1 p-3 sm:p-6 lg:p-8 bg-gray-50 overflow-y-auto">
+        <main className="flex-1 ml-20 md:ml-40 p-3 sm:p-6 lg:p-8 bg-gray-50 overflow-y-auto relative z-10">
           <div className="max-w-6xl mx-auto">
             {/* Header */}
             <div className="flex flex-col space-y-4 sm:flex-row sm:justify-between sm:items-center sm:space-y-0 mb-6 pb-4 border-b border-gray-200">

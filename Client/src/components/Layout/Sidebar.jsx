@@ -1,15 +1,14 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo  from "../../assets/icons/logo.png";
 import logo1 from "../../assets/icons/logo1.png";
-import { HelpCircle, SettingsIcon, SunIcon, BookOpen, Calendar, BarChart2, ClipboardList, Layers, FileText,AlarmCheckIcon} from 'lucide-react';
+import { HelpCircle, SettingsIcon, SunIcon, BookOpen, Calendar, BarChart2, ClipboardList, Layers, FileText, AlarmCheckIcon, LogOut } from 'lucide-react';
 
 const navItems = [
     { label: "Notes", to: "/notes", icon: <FileText size={18} /> },
     { label: "Tasks", to: "/tasks", icon: <ClipboardList size={18} /> },
     { label: "Pomodoro", to: "/pomodoro", icon: <AlarmCheckIcon size={18} /> },
     { label: "Calendar", to: "/calendar", icon: <Calendar size={18} /> },
-    { label: "Flashcards", to: "/flashcards", icon: <BookOpen size={18} /> },
     { label: "Analytics", to: "/analytics", icon: <BarChart2 size={18} /> },
     { label: "Clips", to: "/clips", icon: <Layers size={18} /> },
 ];
@@ -17,9 +16,22 @@ const navItems = [
 
 function Sidebar() {
     const location = useLocation();
+    const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        setIsLoggedIn(!!token);
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setIsLoggedIn(false);
+        navigate('/');
+    };
 
     return (
-        <aside className="relative flex flex-col h-screen w-20 md:w-40 bg-white shadow-2xl md:shadow-xl border-r-2 border-indigo-100 md:border-slate-100 md:bg-white/80 md:backdrop-blur-lg rounded-none md:rounded-xl p-4 md:p-6 transition-all duration-300">
+        <aside className="fixed left-0 top-0 flex flex-col h-screen w-20 md:w-40 bg-white shadow-2xl md:shadow-xl border-r-2 border-indigo-100 md:border-slate-100 md:bg-white/80 md:backdrop-blur-lg rounded-none md:rounded-xl p-4 md:p-6 transition-all duration-300 z-50 overflow-hidden">
             {/* Logo */}
             <div className=" flex items-center justify-center mb-5">
                 <Link to="/" className="flex justify-center">
@@ -85,16 +97,28 @@ function Sidebar() {
                     </Link>
                 </div>
                 <div className="flex flex-col gap-2 w-full">
-                    <Link to="/signup" className="w-full">
-                        <button className="w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold shadow hover:bg-indigo-700 transition">
-                            Sign Up
+                    {!isLoggedIn ? (
+                        <>
+                            <Link to="/signup" className="w-full">
+                                <button className="w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold shadow hover:bg-indigo-700 transition">
+                                    Sign Up
+                                </button>
+                            </Link>
+                            <Link to="/login" className="w-full">
+                                <button className="w-full bg-white text-indigo-600 border border-indigo-200 py-2 rounded-lg font-semibold shadow hover:bg-indigo-50 transition">
+                                    Login
+                                </button>
+                            </Link>
+                        </>
+                    ) : (
+                        <button 
+                            onClick={handleLogout}
+                            className="w-full bg-red-600 text-white py-2 rounded-lg font-semibold shadow hover:bg-red-700 transition flex items-center justify-center gap-2"
+                        >
+                            <LogOut size={18} />
+                            <span className="hidden md:inline">Logout</span>
                         </button>
-                    </Link>
-                    <Link to="/login" className="w-full">
-                        <button className="w-full bg-white text-indigo-600 border border-indigo-200 py-2 rounded-lg font-semibold shadow hover:bg-indigo-50 transition">
-                            Login
-                        </button>
-                    </Link>
+                    )}
                 </div>
             </div>
         </aside>
