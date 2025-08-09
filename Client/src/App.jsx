@@ -15,6 +15,7 @@ import Settings from './pages/Settings';
 import NotFound from './pages/NotFound';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Pomodoro from './pages/Pomodoro';
   
 const App = () => (
   <ThemeProvider>
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/clips" element={<Clips />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/pomodoro" element={<Pomodoro />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

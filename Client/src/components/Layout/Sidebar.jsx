@@ -2,11 +2,12 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo  from "../../assets/icons/logo.png";
 import logo1 from "../../assets/icons/logo1.png";
-import { HelpCircle, SettingsIcon, SunIcon, BookOpen, Calendar, BarChart2, ClipboardList, Layers, FileText } from 'lucide-react';
+import { HelpCircle, SettingsIcon, SunIcon, BookOpen, Calendar, BarChart2, ClipboardList, Layers, FileText,AlarmCheckIcon} from 'lucide-react';
 
 const navItems = [
     { label: "Notes", to: "/notes", icon: <FileText size={18} /> },
     { label: "Tasks", to: "/tasks", icon: <ClipboardList size={18} /> },
+    { label: "Pomodoro", to: "/pomodoro", icon: <AlarmCheckIcon size={18} /> },
     { label: "Calendar", to: "/calendar", icon: <Calendar size={18} /> },
     { label: "Flashcards", to: "/flashcards", icon: <BookOpen size={18} /> },
     { label: "Analytics", to: "/analytics", icon: <BarChart2 size={18} /> },
@@ -39,7 +40,7 @@ function Sidebar() {
                     <Link
                         key={item.to}
                         to={item.to}
-                        className={`flex items-center gap-3 px-3 py-2 rounded-lg font-medium transition-all duration-200
+                        className={`flex items-center gap-1 px-1.5 py-2 rounded-lg font-medium transition-all duration-200
                           ${location.pathname === item.to
                                 ? "bg-indigo-600 text-white shadow"
                                 : "text-gray-700 hover:bg-indigo-50 hover:text-indigo-600"}

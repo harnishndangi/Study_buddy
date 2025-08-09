@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+ 
 const PomodoroSessionSchema = new mongoose.Schema(
   {
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }, // Associates the session with a user
